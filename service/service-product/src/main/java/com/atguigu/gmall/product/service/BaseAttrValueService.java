@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
- *
- */
+* @author lfy
+* @description 针对表【base_attr_value(属性值表)】的数据库操作Service
+* @createDate 2022-06-21 09:01:27
+*/
 public interface BaseAttrValueService extends IService<BaseAttrValue> {
 
     /**

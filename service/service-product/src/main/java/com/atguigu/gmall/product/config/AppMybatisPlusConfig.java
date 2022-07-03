@@ -15,11 +15,9 @@ public class AppMybatisPlusConfig {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 
         //每一种功能是一个小拦截器
-        //自动分页拦截器
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
         paginationInnerInterceptor.setOverflow(true); //自动溢出处理
         interceptor.addInnerInterceptor(paginationInnerInterceptor);
-        //防止全表更新与删除拦截器
         interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
 
         return interceptor;

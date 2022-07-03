@@ -13,4 +13,6 @@
     <sql id="Base_Column_List">
         id,name,category1_id
     </sql>
+
+
 </mapper>

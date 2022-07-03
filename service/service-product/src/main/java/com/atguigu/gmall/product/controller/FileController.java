@@ -1,5 +1,6 @@
 package com.atguigu.gmall.product.controller;
 
+
 import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.product.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,18 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/admin/product")
 public class FileController {
 
+
     @Autowired
     FileService fileService;
+
 
     /**
      * @RequestPart("file") 专门接受文件项
@@ -47,12 +52,15 @@ public class FileController {
      * @param request
      * @param file
      * @return
+     * @throws ServletException
+     * @throws IOException
      */
     @PostMapping("/fileUpload")
     public Result upload(HttpServletRequest request,
-                         @RequestPart("file") MultipartFile file)throws Exception{
-        //1.文件上传到minio,并拿到访问地址
+                         @RequestPart("file") MultipartFile file) throws Exception {
+        //1、文件上传到minio，并拿到文件访问地址
         String url = fileService.upload(file);
+
 //        //username,pwd,file
 //        /**
 //         *        用户名： <input type="text" name="username"/> <br/>

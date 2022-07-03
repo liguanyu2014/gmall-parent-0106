@@ -14,9 +14,18 @@ spring:
             allowCredentials: true #允许Cookie等一些安全标识头跨域
 
       routes:
+        - id: incr_test
+          uri: lb://service-product
+          predicates:
+            - Path=/incr
+
         - id: product_route
           uri: lb://service-product
           predicates:
             - Path=/admin/product/**
 
 
+        - id: front_route    #所有 域名的请求都来到 web-front 前端
+          uri: lb://web-front
+          predicates:
+            - Host=**.gmall.com

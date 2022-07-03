@@ -33,18 +33,5 @@ public class SpuPoster extends BaseEntity {
 	@TableField("img_url")
 	private String imgUrl;
 
-	@ApiModelProperty(value = "创建时间")
-	@TableField("create_time")
-	private String createTime;
-
-	@ApiModelProperty(value = "更新时间")
-	@TableField("update_time")
-	private String updateTime;
-
-	@ApiModelProperty(value = "是否被删除")
-	@TableField("is_deleted")
-	private String isDeleted;
-
-
 }
 

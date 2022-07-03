@@ -5,25 +5,38 @@
     <parent>
         <artifactId>gmall-parent</artifactId>
         <groupId>com.atguigu.gmall</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <!--父工程-->
+    <!--    聚合所有微服务的模块-->
+    <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>service-product</module>
+        <module>web-front</module>
+        <module>service-item</module>
+        <module>service-search</module>
     </modules>
-    <artifactId>service</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--依赖服务的工具类-->
         <dependency>
             <groupId>com.atguigu.gmall</groupId>
             <artifactId>service-util</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--数据载体-->
+        <!--数据载体；模型层-->
         <dependency>
             <groupId>com.atguigu.gmall</groupId>
             <artifactId>model</artifactId>

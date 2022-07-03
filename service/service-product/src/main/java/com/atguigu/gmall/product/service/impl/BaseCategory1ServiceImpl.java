@@ -1,5 +1,6 @@
 package com.atguigu.gmall.product.service.impl;
 
+
 import com.atguigu.gmall.model.product.BaseCategory1;
 import com.atguigu.gmall.model.product.BaseCategory2;
 import com.atguigu.gmall.product.mapper.BaseCategory1Mapper;
@@ -15,14 +16,17 @@ import java.util.List;
 @Service
 public class BaseCategory1ServiceImpl extends ServiceImpl<BaseCategory1Mapper, BaseCategory1> implements BaseCategory1Service {
 
+
     @Autowired
-    private BaseCategory2Service baseCategory2Service;
+    BaseCategory2Service baseCategory2Service;
 
     @Override
     public List<BaseCategory2> getCategory2(Long category1Id) {
         QueryWrapper<BaseCategory2> wrapper = new QueryWrapper<>();
         wrapper.eq("category1_id",category1Id);
-        List<BaseCategory2> category2s = baseCategory2Service.list(wrapper);
-        return category2s;
+
+        List<BaseCategory2> list = baseCategory2Service.list(wrapper);
+
+        return list;
     }
 }

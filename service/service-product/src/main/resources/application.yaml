@@ -1,6 +1,11 @@
 server:
   port: 7000
+
+
 spring:
+  profiles:
+    include: sharding
+
   datasource:
     url: jdbc:mysql://192.168.2.100:3306/gmall_product?useSSL=false&characterEncoding=utf-8
     username: root
@@ -10,10 +15,21 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
+  redis:
+    host: 192.168.2.100
+    port: 6379
+    password: "lgy0131"
+
+
 app:
   minio:
     endpoint: http://192.168.2.100:9000
     accessKey: admin
     secretKey: admin123456
     bucketName: gmall
+
+
+
+#product 7000  cart 7001;  ....
 

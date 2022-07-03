@@ -5,12 +5,16 @@
     <parent>
         <artifactId>common</artifactId>
         <groupId>com.atguigu.gmall</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service-util</artifactId>
-    <version>1.0</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -18,10 +22,27 @@
             <artifactId>common-util</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.atguigu.gmall</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- redisson 分布式锁-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.15.3</version>
         </dependency>
 
         <!-- spring2.X集成redis所需common-pool2-->
@@ -31,26 +52,20 @@
             <version>2.6.0</version>
         </dependency>
 
-        <!-- redisson 分布式锁-->
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <version>3.15.3</version>
-        </dependency>
+
 
         <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <!--目标环境已提供,打包的时候不用打,避免一定的冲突-->
-            <!--依赖了不同jar包,他们有同名类,不同内容则必会冲突-->
-            <!--运行jar包的环境依赖的版本与jar包不同也会冲突-->
-            <!--
-            ClassNoDefine: 类没定义 -> 一般是类里面的某些方法没定义(版本冲突)
-            ClassNotFound: 类没找到 -> 有的包没导
-            -->
+            <!-- provided: 目标环境已提供，打包的时候不用带,避免冲突 -->
+<!--    ClassNoDefine： 类没定义；冲突。
+        ClassNotFound：类没找到
+     -->
             <scope>provided</scope>
         </dependency>
+
+
     </dependencies>
 
 </project>

@@ -4,19 +4,15 @@ import com.atguigu.gmall.product.config.minio.MinioProperties;
 import com.atguigu.gmall.product.service.FileService;
 import io.minio.MinioClient;
 import io.minio.PutObjectOptions;
-import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 @Service
-public class FileServiceImpl implements FileService{
+public class FileServiceImpl implements FileService {
 
     @Autowired
     MinioClient minioClient;
@@ -28,8 +24,7 @@ public class FileServiceImpl implements FileService{
     MinioProperties minioProperties;
 
     @Override
-    public String upload(MultipartFile file)throws Exception{
-        //设置文件唯一id
+    public String upload(MultipartFile file) throws Exception {
         String filename = UUID.randomUUID().toString().replace("-","")+"_"+file.getOriginalFilename();
 
         //1、准备上传
@@ -40,7 +35,7 @@ public class FileServiceImpl implements FileService{
 
 
         //2、返回这个资源的访问路径  minio服务器地址+
-        //http://192.168.2.100:9000/gmall/123.jpg
+        //http://192.168.200.100:9000/gmall/123.jpg
         String url =  minioProperties.getEndpoint()+"/"+minioProperties.getBucketName()+"/"+filename;
         return url;
     }
