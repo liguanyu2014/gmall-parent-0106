@@ -22,9 +22,11 @@ public class SearchParam {
     private Long category3Id;
     private String keyword;
     private String trademark;
-    private String order;
     private String[] props;
-    private Long pageNo;
+    //以上都是查询条件
+
+    private String order;//排序
+    private Long pageNo = 1L;//分页,支取部分
 
 
 }

@@ -17,6 +17,9 @@ public class SearchResponseVo {
     //品牌面包屑
     private String trademarkParam;
 
+    //Url参数
+    private String urlParam;
+
     //属性面包屑
     private List<AttrBread>  propsParamList;
 

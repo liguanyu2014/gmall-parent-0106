@@ -13,6 +13,14 @@ import java.util.Map;
 @FeignClient("service-search")
 public interface SearchFeignClient {
 
+    /**
+     *  增加商品热度分
+     * @return
+     */
+    @GetMapping("/incr/hotscore/{skuId}")
+    public Result incrHotScore(@PathVariable Long skuId,
+                               @RequestParam("score") Long socer);
+
 
     /**
      * 商品检索

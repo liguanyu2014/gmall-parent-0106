@@ -25,4 +25,10 @@ public interface GoodsSearchService {
      * @return
      */
     SearchResponseVo search(SearchParam param);
+
+    /**
+     *  增加商品热度分
+     * @return
+     */
+    void incrHotScore(Long skuId,Long score);
 }
