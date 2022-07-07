@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -46,11 +47,11 @@ public class CartInfo extends BaseEntity {
 
     //  ,fill = FieldFill.INSERT
     @TableField(value = "create_time")
-    private Timestamp createTime;
+    private Date createTime;
 
     //  ,fill = FieldFill.INSERT_UPDATE)
     @TableField(value = "update_time")
-    private Timestamp updateTime;
+    private Date updateTime;
 
     // 实时价格 skuInfo.price
     @TableField(exist = false)

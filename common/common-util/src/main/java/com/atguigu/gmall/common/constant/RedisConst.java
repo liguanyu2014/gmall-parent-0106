@@ -13,4 +13,6 @@ public class RedisConst {
     public static final String LOCK_PREFIX = "lock:";
     public static final String SKU_HOTSCORE = "hotscore";
     public static final String USER_LOGIN_PREFIX = "user:login:";
+    public static final String CART_INFO_PREFIX = "cart:info:";
+    public static final Long CART_SIZE_LIMIT = 200L;
 }

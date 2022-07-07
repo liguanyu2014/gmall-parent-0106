@@ -1,13 +1,9 @@
 server:
-  port: 9000
+  port: 13000
 spring:
   main:
     allow-bean-definition-overriding: true
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-app:
-  threadpool:
-    core-pool-size: 4
-    maximum-pool-size: 8
-    work-queue-size: 200
-    keep-alive-time: 60
+
+

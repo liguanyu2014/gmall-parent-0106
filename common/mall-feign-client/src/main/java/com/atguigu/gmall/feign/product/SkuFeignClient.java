@@ -2,6 +2,7 @@ package com.atguigu.gmall.feign.product;
 
 
 import com.atguigu.gmall.common.result.Result;
+import com.atguigu.gmall.model.cart.CartInfo;
 import com.atguigu.gmall.model.product.SkuInfo;
 import com.atguigu.gmall.model.product.SpuSaleAttr;
 import com.atguigu.gmall.model.vo.CategoryView;
@@ -20,12 +21,20 @@ import java.util.List;
 public interface SkuFeignClient {
 
     /**
+     *  根据商品id获取购物车信息
+     * @param skuId
+     * @return
+     */
+    @GetMapping("/cartinfo/{skuId}")
+    Result<CartInfo> getCartInfoBySkuId(@PathVariable("skuId") Long skuId);
+
+    /**
      * 查询skuInfo信息
      * @param skuId
      * @return
      */
     @GetMapping("/skuinfo/{skuId}")
-    public Result<SkuInfo> getSkuInfo(@PathVariable("skuId")Long skuId);
+    Result<SkuInfo> getSkuInfo(@PathVariable("skuId")Long skuId);
 
 
     /**
