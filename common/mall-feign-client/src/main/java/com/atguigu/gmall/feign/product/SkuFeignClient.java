@@ -21,6 +21,14 @@ import java.util.List;
 public interface SkuFeignClient {
 
     /**
+     * 实时查询商品价格
+     * @param skuId
+     * @return
+     */
+    @GetMapping("/sku/price/shishi/{skuId}")
+    Result<BigDecimal> get1010SkuPrice(@PathVariable("skuId") Long skuId);
+
+    /**
      *  根据商品id获取购物车信息
      * @param skuId
      * @return

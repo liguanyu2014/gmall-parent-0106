@@ -38,7 +38,6 @@ public class SkuRpcController {
     @Autowired
     SpuSaleAttrService spuSaleAttrService;
 
-
     @Autowired
     SpudeSkuSaleAttrBizService spudeSkuSaleAttrBizService;
 
@@ -119,6 +118,18 @@ public class SkuRpcController {
 
 //        skuInfoService.getById(skuId); //
         BigDecimal price = skuInfoService.getSkuPrice(skuId);
+        return Result.ok(price);
+    }
+
+    /**
+     * 实时查询商品价格
+     * @param skuId
+     * @return
+     */
+    @GetMapping("/sku/price/shishi/{skuId}")
+    public Result<BigDecimal> get1010SkuPrice(@PathVariable("skuId") Long skuId){
+//        skuInfoService.getById(skuId); //
+        BigDecimal price = skuInfoService.get1010SkuPrice(skuId);
         return Result.ok(price);
     }
 }

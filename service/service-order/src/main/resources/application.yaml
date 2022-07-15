@@ -1,0 +1,27 @@
+server:
+  port: 14000
+spring:
+  profiles:
+    include: sharding
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 192.168.2.100
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+    publisher-confirm-type: correlated   #发送端确认的方式：关联方式，错误的消息，必须通知publisher
+    publisher-returns: true   #发送返回true，服务器只要收到消息了就通知发送方。
+    listener:
+      type: simple
+      simple:
+        acknowledge-mode: manual  #手动确认
+        prefetch: 12
+
+app:
+  threadpool:
+    core-pool-size: 4
+    maximum-pool-size: 8
+    work-queue-size: 200
+    keep-alive-time: 60
