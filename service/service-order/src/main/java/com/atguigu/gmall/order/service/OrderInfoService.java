@@ -47,4 +47,11 @@ public interface OrderInfoService extends IService<OrderInfo> {
      * @return
      */
     OrderInfo getOrderInfoAndDetails(long orderId, long userId);
+
+    /**
+     * 保存秒杀单
+     * @param orderInfo
+     * @return
+     */
+    Long saveSeckillOrder(OrderInfo orderInfo);
 }

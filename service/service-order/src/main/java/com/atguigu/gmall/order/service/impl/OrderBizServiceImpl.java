@@ -517,7 +517,6 @@ public class OrderBizServiceImpl implements OrderBizService {
         //订单的处理状态
         orderInfo.setProcessStatus(ProcessStatus.UNPAID.name());
 
-
         //物流号，发货以后才会有
         orderInfo.setTrackingNo("");
 

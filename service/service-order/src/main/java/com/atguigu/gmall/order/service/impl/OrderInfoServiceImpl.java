@@ -21,6 +21,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.atguigu.gmall.order.service.OrderInfoService;
 import com.atguigu.gmall.order.mapper.OrderInfoMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ import java.util.stream.Collectors;
 /**
  *
  */
+@Slf4j
 @Service
 public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo>
     implements OrderInfoService{
@@ -132,6 +134,10 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         wrapper.eq("out_trade_no", outTradeNo);
 
         OrderInfo orderInfo = orderInfoMapper.selectOne(wrapper);
+        if(orderInfo == null){
+            log.error("用户：【{}】 ，订单对外交易号：【{}】  状态更新为（paid）异常。由于数据库无此订单",userId+"",outTradeNo);
+            return;
+        }
 
         //3、修改此订单状态
         ProcessStatus paid = ProcessStatus.PAID;
@@ -170,6 +176,22 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     public OrderInfo getOrderInfoAndDetails(long orderId, long userId) {
         return orderInfoMapper.getOrderInfoAndDetails(orderId,userId);
     }
+
+    @Transactional
+    @Override
+    public Long saveSeckillOrder(OrderInfo orderInfo) {
+
+        //TODO 补全订单信息  orderInfo
+        int insert = orderInfoMapper.insert(orderInfo);
+
+        orderInfo.getOrderDetailList().forEach(item->{
+            item.setOrderId(orderInfo.getId());
+            orderDetailService.save(item);
+        });
+        return orderInfo.getId();
+    }
+
+
 
     private WareStockMsg prepareWareMsg(OrderInfo orderInfo) {
         WareStockMsg msg = new WareStockMsg();

@@ -6,10 +6,9 @@ import com.atguigu.gmall.model.vo.order.OrderConfirmVo;
 import com.atguigu.gmall.order.service.OrderBizService;
 import com.atguigu.gmall.order.service.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 
 @RequestMapping("/rpc/inner/order")
@@ -44,5 +43,16 @@ public class OrderRpcController {
         return Result.ok(orderInfo);
     }
 
+    /**
+     * 保存秒杀单
+     * @param orderInfo
+     * @return
+     */
+    @PostMapping("/save/seckill/order")
+    public Result<Long> saveSeckillOrder(@RequestBody OrderInfo orderInfo){
+        orderInfo.setExpireTime(new Date());
+        Long id = orderInfoService.saveSeckillOrder(orderInfo);
+        return Result.ok(id);
+    }
 
 }
